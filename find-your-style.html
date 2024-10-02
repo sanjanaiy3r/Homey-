@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find Your Style - CasaCurate</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: white;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .navbar {
+            background-color: #000;
+        }
+
+        .navbar-nav .nav-link {
+            color: #fff;
+            font-weight: bold;
+        }
+
+        .container {
+            margin-top: 20px;
+        }
+
+        .image-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-gap: 20px;
+        }
+
+        .image-item {
+            position: relative;
+            cursor: pointer;
+            transition: transform 0.3s;
+            border: 1px solid #e6e6e6;
+        }
+
+        .image-item:hover {
+            transform: scale(1.05);
+            border-color: #000;
+        }
+
+        .image-item img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .image-name {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            color: white;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 5px;
+            border-radius: 3px;
+        }
+
+        .selected {
+            border: 3px solid #28a745; /* Green border for selected images */
+        }
+
+        .checkmark {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            color: #28a745; /* Green color for checkmark */
+            font-size: 30px;
+            display: none; /* Initially hidden */
+        }
+
+        .submit-btn {
+            margin-top: 20px;
+            background-color: #000;
+            color: #fff;
+        }
+
+        .result {
+            display: none;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+
+        .retake-btn {
+            display: none; /* Initially hidden */
+            margin-top: 10px;
+            background-color: #dc3545; /* Red color for retake button */
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">CasaCurate</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="featured-products.html">Featured Products</a></li>
+                    <li class="nav-item"><a class="nav-link" href="find-your-style.html">Find Your Style</a></li>
+                    <li class="nav-item"><a class="nav-link" href="wishlist.html">Wishlist</a></li>
+                    <li class="nav-item"><a class="nav-link" href="cart.html">Cart</a></li>
+                    <li class="nav-item"><a class="nav-link" href="track-orders.html">Track Orders</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about-us.html">About Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="login.html">Login/Signup</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container">
+        <h2>Find Your Style</h2>
+        <p>Select any two images that resonate with your aesthetic preferences:</p>
+
+        <div class="image-grid">
+            <div class="image-item" onclick="selectImage(this)">
+                <div class="checkmark">✔</div>
+                <img src="images/style1.jpg" alt="Modern Elegance">
+                <div class="image-name">Modern Elegance</div>
+            </div>
+            <div class="image-item" onclick="selectImage(this)">
+                <div class="checkmark">✔</div>
+                <img src="images/style2.jpg" alt="Classic Charm">
+                <div class="image-name">Classic Charm</div>
+            </div>
+            <div class="image-item" onclick="selectImage(this)">
+                <div class="checkmark">✔</div>
+                <img src="images/style3.jpg" alt="Bohemian Vibes">
+                <div class="image-name">Bohemian Vibes</div>
+            </div>
+            <div class="image-item" onclick="selectImage(this)">
+                <div class="checkmark">✔</div>
+                <img src="images/style4.jpg" alt="Minimalist Design">
+                <div class="image-name">Minimalist Design</div>
+            </div>
+            <div class="image-item" onclick="selectImage(this)">
+                <div class="checkmark">✔</div>
+                <img src="images/style5.jpg" alt="Rustic Feel">
+                <div class="image-name">Rustic Feel</div>
+            </div>
+            <div class="image-item" onclick="selectImage(this)">
+                <div class="checkmark">✔</div>
+                <img src="images/style6.jpg" alt="Art Deco">
+                <div class="image-name">Art Deco</div>
+            </div>
+        </div>
+
+        <button class="btn submit-btn" onclick="showResult()">Show Result</button>
+
+        <div id="result" class="result"></div>
+        <button id="retakeButton" class="btn retake-btn" onclick="retakeQuiz()">Retake Quiz</button>
+    </div>
+
+    <script>
+        let selectedStyles = [];
+
+        const aestheticMapping = {
+            "Modern Elegance, Classic Charm": "Timeless Chic",
+            "Modern Elegance, Bohemian Vibes": "Eclectic Elegance",
+            "Modern Elegance, Minimalist Design": "Modern Sophistication",
+            "Modern Elegance, Rustic Feel": "Sophisticated Warmth",
+            "Modern Elegance, Art Deco": "Artistic Elegance",
+            "Classic Charm, Bohemian Vibes": "Vintage Boho",
+            "Classic Charm, Minimalist Design": "Modern Classic",
+            "Classic Charm, Rustic Feel": "Farmhouse Charm",
+            "Classic Charm, Art Deco": "Charming Deco",
+            "Bohemian Vibes, Minimalist Design": "Earthy Minimalism",
+            "Bohemian Vibes, Rustic Feel": "Boho Rustic",
+            "Bohemian Vibes, Art Deco": "Bohemian Deco",
+            "Minimalist Design, Rustic Feel": "Warm Minimalism",
+            "Minimalist Design, Art Deco": "Minimalist Deco",
+            "Rustic Feel, Art Deco": "Rustic Glamour"
+        };
+
+        function selectImage(element) {
+            element.classList.toggle('selected');
+            const checkmark = element.querySelector('.checkmark');
+            const styleName = element.querySelector('.image-name').innerText;
+
+            if (selectedStyles.includes(styleName)) {
+                selectedStyles = selectedStyles.filter(style => style !== styleName);
+                checkmark.style.display = "none"; // Hide checkmark
+            } else {
+                // Limit the selection to a maximum of 2 styles
+                if (selectedStyles.length < 2) {
+                    selectedStyles.push(styleName);
+                    checkmark.style.display = "block"; // Show checkmark
+                }
+            }
+        }
+
+        function showResult() {
+            const resultElement = document.getElementById('result');
+            const retakeButton = document.getElementById('retakeButton');
+
+            if (selectedStyles.length < 2) {
+                resultElement.innerText = "Please select exactly two styles.";
+                resultElement.style.display = "block";
+                retakeButton.style.display = "none"; // Hide retake button
+            } else {
+                // Create a key for the selected styles in sorted order
+                const selectedKey = selectedStyles.sort().join(", ");
+                const aesthetic = aestheticMapping[selectedKey] || "Unique Style";
+
+                resultElement.innerText = `You selected: ${selectedStyles.join(', ')}. Your preferred aesthetic is: ${aesthetic}.`;
+                resultElement.style.display = "block";
+                retakeButton.style.display = "block"; // Show retake button
+            }
+        }
+
+        function retakeQuiz() {
+            // Reset selections
+            selectedStyles = [];
+            const resultElement = document.getElementById('result');
+            const retakeButton = document.getElementById('retakeButton');
+            const selectedImages = document.querySelectorAll('.image-item');
+
+            resultElement.style.display = "none"; // Hide the result
+            retakeButton.style.display = "none"; // Hide the retake button
+
+            // Remove selection styles and checkmarks
+            selectedImages.forEach(item => {
+                item.classList.remove('selected');
+                item.querySelector('.checkmark').style.display = "none";
+            });
+        }
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

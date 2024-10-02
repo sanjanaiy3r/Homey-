@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CasaCurate - Login/Signup</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .form-container {
+            max-width: 400px;
+            margin: auto;
+            padding: 2rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .google-btn {
+            background-color: #4285F4;
+            color: white;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container">
+                <a class="navbar-brand" href="#">CasaCurate</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="featured-products.html">Featured Products</a></li>
+                        <li class="nav-item"><a class="nav-link" href="find-your-style.html">Find Your Style</a></li>
+                        <li class="nav-item"><a class="nav-link" href="wishlist.html">Wishlist</a></li>
+                        <li class="nav-item"><a class="nav-link" href="cart.html">Cart</a></li>
+                        <li class="nav-item"><a class="nav-link" href="track-orders.html">Track Orders</a></li>
+                        <li class="nav-item"><a class="nav-link" href="about-us.html">About Us</a></li>
+                        <li class="nav-item"><a class="nav-link" href="login.html">Login/Signup</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container mt-4">
+        <div class="form-container">
+            <h2 class="text-center">Login / Signup</h2>
+            <form>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" class="form-control" id="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="password" class="form-control" id="password" required>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Login</button>
+                <hr>
+                <button type="button" class="btn google-btn btn-block" onclick="googleLogin()">Sign in with Google</button>
+                <p class="text-center mt-3">Don't have an account? <a href="#!" onclick="toggleSignup()">Signup</a></p>
+            </form>
+
+            <form id="signup-form" style="display: none;">
+                <div class="form-group">
+                    <label for="newEmail">Email:</label>
+                    <input type="email" class="form-control" id="newEmail" required>
+                </div>
+                <div class="form-group">
+                    <label for="newPassword">Password:</label>
+                    <input type="password" class="form-control" id="newPassword" required>
+                </div>
+                <button type="submit" class="btn btn-success btn-block">Signup</button>
+                <p class="text-center mt-3">Already have an account? <a href="#!" onclick="toggleLogin()">Login</a></p>
+            </form>
+        </div>
+    </main>
+
+    <footer class="bg-dark text-white text-center py-4">
+        <p>&copy; 2024 CasaCurate. All rights reserved.</p>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        function toggleSignup() {
+            document.querySelector('form').style.display = 'none';
+            document.getElementById('signup-form').style.display = 'block';
+        }
+
+        function toggleLogin() {
+            document.getElementById('signup-form').style.display = 'none';
+            document.querySelector('form').style.display = 'block';
+        }
+
+        function googleLogin() {
+            // Placeholder for Google sign-in functionality
+            alert("Google sign-in functionality to be implemented.");
+        }
+    </script>
+</body>
+</html>
