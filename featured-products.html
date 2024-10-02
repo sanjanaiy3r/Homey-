@@ -73,53 +73,33 @@
             margin-top: 5px;
         }
 
-        .quick-shop {
-            display: none;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: #000;
-            color: #fff;
-            padding: 10px 20px;
-            cursor: pointer;
-        }
-
-        .product:hover .quick-shop {
-            display: block;
-        }
-
-        .category-list {
-            list-style-type: none;
-            padding-left: 0;
-        }
-
-        .category-list li {
-            margin-bottom: 15px;
-        }
-
-        .category-list li a {
-            text-decoration: none;
-            color: #000;
-            font-size: 1rem;
-        }
-
-        .search-bar {
-            margin-bottom: 20px;
-        }
-
-        .search-bar input {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #e6e6e6;
-            font-size: 1rem;
-        }
-
         .wishlist,
         .add-to-cart {
             margin-top: 10px;
             display: flex;
             justify-content: space-between;
+        }
+
+        .search-bar input {
+            width: 100%;
+            padding: 10px;
+            margin: 20px 0;
+            border: 1px solid #ccc;
+        }
+
+        .category-list li {
+            list-style-type: none;
+            margin: 10px 0;
+        }
+
+        .category-list li a {
+            color: #007bff;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .category-list li a:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
@@ -130,7 +110,8 @@
     <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container">
             <a class="navbar-brand" href="#">CasaCurate</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
@@ -155,12 +136,12 @@
             <aside class="col-md-3">
                 <h4>Categories</h4>
                 <ul class="category-list">
-                    <li><a href="#">All Products</a></li>
-                    <li><a href="#">Furniture</a></li>
-                    <li><a href="#">Lamps</a></li>
-                    <li><a href="#">Kitchen Decor</a></li>
-                    <li><a href="#">Bedroom Decor</a></li>
-                    <li><a href="#">Bathroom Decor</a></li>
+                    <li><a href="#" onclick="filterProducts('all')">All Products</a></li>
+                    <li><a href="#" onclick="filterProducts('furniture')">Furniture</a></li>
+                    <li><a href="#" onclick="filterProducts('lamps')">Lamps</a></li>
+                    <li><a href="#" onclick="filterProducts('kitchen')">Kitchen Decor</a></li>
+                    <li><a href="#" onclick="filterProducts('bedroom')">Bedroom Decor</a></li>
+                    <li><a href="#" onclick="filterProducts('bathroom')">Bathroom Decor</a></li>
                 </ul>
 
                 <!-- Search Bar -->
@@ -173,129 +154,154 @@
             <div class="col-md-9">
                 <div class="product-grid" id="productGrid">
                     <!-- Product 1 -->
-                    <div class="product">
+                    <div class="product" data-category="lamps">
                         <img src="images/product1.jpg" alt="Product 1">
                         <div class="product-name">Modern Lamp</div>
                         <div class="product-price">₹3,200</div>
                         <div class="product-description">Stylish and modern lamp to brighten your space.</div>
-                        <div class="wishlist"><button class="btn btn-outline-danger">Add to Wishlist</button></div>
-                        <div class="add-to-cart"><button class="btn btn-outline-success">Add to Cart</button></div>
+                        <div class="wishlist"><button class="btn btn-outline-danger" onclick="addToWishlist('Modern Lamp')">Add to Wishlist</button></div>
+                        <div class="add-to-cart"><button class="btn btn-outline-success" onclick="addToCart('Modern Lamp', 3200)">Add to Cart</button></div>
                     </div>
                     <!-- Product 2 -->
-                    <div class="product">
+                    <div class="product" data-category="furniture">
                         <img src="images/product2.jpg" alt="Product 2">
                         <div class="product-name">Elegant Sofa</div>
                         <div class="product-price">₹12,500</div>
                         <div class="product-description">Comfortable and elegant sofa for your living room.</div>
-                        <div class="wishlist"><button class="btn btn-outline-danger">Add to Wishlist</button></div>
-                        <div class="add-to-cart"><button class="btn btn-outline-success">Add to Cart</button></div>
+                        <div class="wishlist"><button class="btn btn-outline-danger" onclick="addToWishlist('Elegant Sofa')">Add to Wishlist</button></div>
+                        <div class="add-to-cart"><button class="btn btn-outline-success" onclick="addToCart('Elegant Sofa', 12500)">Add to Cart</button></div>
                     </div>
                     <!-- Product 3 -->
-                    <div class="product">
+                    <div class="product" data-category="furniture">
                         <img src="images/product3.jpg" alt="Product 3">
                         <div class="product-name">Wooden Chair</div>
                         <div class="product-price">₹4,800</div>
                         <div class="product-description">A sturdy wooden chair that combines comfort with style.</div>
-                        <div class="wishlist"><button class="btn btn-outline-danger">Add to Wishlist</button></div>
-                        <div class="add-to-cart"><button class="btn btn-outline-success">Add to Cart</button></div>
+                        <div class="wishlist"><button class="btn btn-outline-danger" onclick="addToWishlist('Wooden Chair')">Add to Wishlist</button></div>
+                        <div class="add-to-cart"><button class="btn btn-outline-success" onclick="addToCart('Wooden Chair', 4800)">Add to Cart</button></div>
                     </div>
                     <!-- Product 4 -->
-                    <div class="product">
+                    <div class="product" data-category="decor">
                         <img src="images/product4.jpg" alt="Product 4">
                         <div class="product-name">Ceramic Vase</div>
                         <div class="product-price">₹1,200</div>
                         <div class="product-description">Beautiful ceramic vase for decorative purposes.</div>
-                        <div class="wishlist"><button class="btn btn-outline-danger">Add to Wishlist</button></div>
-                        <div class="add-to-cart"><button class="btn btn-outline-success">Add to Cart</button></div>
+                        <div class="wishlist"><button class="btn btn-outline-danger" onclick="addToWishlist('Ceramic Vase')">Add to Wishlist</button></div>
+                        <div class="add-to-cart"><button class="btn btn-outline-success" onclick="addToCart('Ceramic Vase', 1200)">Add to Cart</button></div>
                     </div>
                     <!-- Product 5 -->
-                    <div class="product">
+                    <div class="product" data-category="bedroom">
                         <img src="images/product5.jpg" alt="Product 5">
-                        <div class="product-name">Rug</div>
-                        <div class="product-price">₹2,500</div>
-                        <div class="product-description">Luxurious rug to enhance your home decor.</div>
-                        <div class="wishlist"><button class="btn btn-outline-danger">Add to Wishlist</button></div>
-                        <div class="add-to-cart"><button class="btn btn-outline-success">Add to Cart</button></div>
+                        <div class="product-name">Stylish Bed</div>
+                        <div class="product-price">₹25,000</div>
+                        <div class="product-description">A stylish bed to enhance your bedroom decor.</div>
+                        <div class="wishlist"><button class="btn btn-outline-danger" onclick="addToWishlist('Stylish Bed')">Add to Wishlist</button></div>
+                        <div class="add-to-cart"><button class="btn btn-outline-success" onclick="addToCart('Stylish Bed', 25000)">Add to Cart</button></div>
                     </div>
                     <!-- Product 6 -->
-                    <div class="product">
+                    <div class="product" data-category="kitchen">
                         <img src="images/product6.jpg" alt="Product 6">
-                        <div class="product-name">Wall Art</div>
-                        <div class="product-price">₹1,500</div>
-                        <div class="product-description">Stunning wall art to beautify your walls.</div>
-                        <div class="wishlist"><button class="btn btn-outline-danger">Add to Wishlist</button></div>
-                        <div class="add-to-cart"><button class="btn btn-outline-success">Add to Cart</button></div>
+                        <div class="product-name">Kitchen Storage Jar</div>
+                        <div class="product-price">₹750</div>
+                        <div class="product-description">A set of stylish storage jars for your kitchen.</div>
+                        <div class="wishlist"><button class="btn btn-outline-danger" onclick="addToWishlist('Kitchen Storage Jar')">Add to Wishlist</button></div>
+                        <div class="add-to-cart"><button class="btn btn-outline-success" onclick="addToCart('Kitchen Storage Jar', 750)">Add to Cart</button></div>
                     </div>
                     <!-- Product 7 -->
-                    <div class="product">
+                    <div class="product" data-category="lamps">
                         <img src="images/product7.jpg" alt="Product 7">
-                        <div class="product-name">Dining Table</div>
-                        <div class="product-price">₹15,000</div>
-                        <div class="product-description">Elegant dining table for family gatherings.</div>
-                        <div class="wishlist"><button class="btn btn-outline-danger">Add to Wishlist</button></div>
-                        <div class="add-to-cart"><button class="btn btn-outline-success">Add to Cart</button></div>
+                        <div class="product-name">Table Lamp</div>
+                        <div class="product-price">₹2,500</div>
+                        <div class="product-description">A modern table lamp that fits any decor.</div>
+                        <div class="wishlist"><button class="btn btn-outline-danger" onclick="addToWishlist('Table Lamp')">Add to Wishlist</button></div>
+                        <div class="add-to-cart"><button class="btn btn-outline-success" onclick="addToCart('Table Lamp', 2500)">Add to Cart</button></div>
                     </div>
                     <!-- Product 8 -->
-                    <div class="product">
+                    <div class="product" data-category="decor">
                         <img src="images/product8.jpg" alt="Product 8">
-                        <div class="product-name">Bed Frame</div>
-                        <div class="product-price">₹8,000</div>
-                        <div class="product-description">Sturdy bed frame for a restful night's sleep.</div>
-                        <div class="wishlist"><button class="btn btn-outline-danger">Add to Wishlist</button></div>
-                        <div class="add-to-cart"><button class="btn btn-outline-success">Add to Cart</button></div>
+                        <div class="product-name">Wall Art</div>
+                        <div class="product-price">₹3,000</div>
+                        <div class="product-description">Beautiful wall art to enhance your living space.</div>
+                        <div class="wishlist"><button class="btn btn-outline-danger" onclick="addToWishlist('Wall Art')">Add to Wishlist</button></div>
+                        <div class="add-to-cart"><button class="btn btn-outline-success" onclick="addToCart('Wall Art', 3000)">Add to Cart</button></div>
                     </div>
                     <!-- Product 9 -->
-                    <div class="product">
+                    <div class="product" data-category="bathroom">
                         <img src="images/product9.jpg" alt="Product 9">
-                        <div class="product-name">Coffee Table</div>
-                        <div class="product-price">₹5,000</div>
-                        <div class="product-description">Stylish coffee table perfect for your living room.</div>
-                        <div class="wishlist"><button class="btn btn-outline-danger">Add to Wishlist</button></div>
-                        <div class="add-to-cart"><button class="btn btn-outline-success">Add to Cart</button></div>
+                        <div class="product-name">Bathroom Shelf</div>
+                        <div class="product-price">₹1,500</div>
+                        <div class="product-description">A stylish shelf for your bathroom essentials.</div>
+                        <div class="wishlist"><button class="btn btn-outline-danger" onclick="addToWishlist('Bathroom Shelf')">Add to Wishlist</button></div>
+                        <div class="add-to-cart"><button class="btn btn-outline-success" onclick="addToCart('Bathroom Shelf', 1500)">Add to Cart</button></div>
                     </div>
                     <!-- Product 10 -->
-                    <div class="product">
+                    <div class="product" data-category="bedroom">
                         <img src="images/product10.jpg" alt="Product 10">
-                        <div class="product-name">Floor Lamp</div>
-                        <div class="product-price">₹4,500</div>
-                        <div class="product-description">Chic floor lamp for stylish illumination.</div>
-                        <div class="wishlist"><button class="btn btn-outline-danger">Add to Wishlist</button></div>
-                        <div class="add-to-cart"><button class="btn btn-outline-success">Add to Cart</button></div>
+                        <div class="product-name">Bedding Set</div>
+                        <div class="product-price">₹3,500</div>
+                        <div class="product-description">Comfortable bedding set for a good night's sleep.</div>
+                        <div class="wishlist"><button class="btn btn-outline-danger" onclick="addToWishlist('Bedding Set')">Add to Wishlist</button></div>
+                        <div class="add-to-cart"><button class="btn btn-outline-success" onclick="addToCart('Bedding Set', 3500)">Add to Cart</button></div>
                     </div>
                     <!-- Product 11 -->
-                    <div class="product">
+                    <div class="product" data-category="kitchen">
                         <img src="images/product11.jpg" alt="Product 11">
-                        <div class="product-name">Table Runner</div>
-                        <div class="product-price">₹700</div>
-                        <div class="product-description">Elegant table runner to add flair to your dining.</div>
-                        <div class="wishlist"><button class="btn btn-outline-danger">Add to Wishlist</button></div>
-                        <div class="add-to-cart"><button class="btn btn-outline-success">Add to Cart</button></div>
+                        <div class="product-name">Dinner Set</div>
+                        <div class="product-price">₹2,200</div>
+                        <div class="product-description">Elegant dinner set for your dining table.</div>
+                        <div class="wishlist"><button class="btn btn-outline-danger" onclick="addToWishlist('Dinner Set')">Add to Wishlist</button></div>
+                        <div class="add-to-cart"><button class="btn btn-outline-success" onclick="addToCart('Dinner Set', 2200)">Add to Cart</button></div>
                     </div>
                     <!-- Product 12 -->
-                    <div class="product">
+                    <div class="product" data-category="decor">
                         <img src="images/product12.jpg" alt="Product 12">
-                        <div class="product-name">Decorative Pillows</div>
-                        <div class="product-price">₹800</div>
-                        <div class="product-description">Soft decorative pillows for added comfort.</div>
-                        <div class="wishlist"><button class="btn btn-outline-danger">Add to Wishlist</button></div>
-                        <div class="add-to-cart"><button class="btn btn-outline-success">Add to Cart</button></div>
+                        <div class="product-name">Decorative Mirror</div>
+                        <div class="product-price">₹4,500</div>
+                        <div class="product-description">Stylish decorative mirror to enhance any room.</div>
+                        <div class="wishlist"><button class="btn btn-outline-danger" onclick="addToWishlist('Decorative Mirror')">Add to Wishlist</button></div>
+                        <div class="add-to-cart"><button class="btn btn-outline-success" onclick="addToCart('Decorative Mirror', 4500)">Add to Cart</button></div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Scripts -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- JavaScript -->
     <script>
-        function searchProducts() {
-            const input = document.getElementById('searchInput').value.toLowerCase();
+        // Function to add to wishlist
+        function addToWishlist(productName) {
+            alert(`${productName} has been added to your wishlist!`);
+        }
+
+        // Function to add to cart
+        function addToCart(productName, price) {
+            alert(`${productName} has been added to your cart at ₹${price}.`);
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            cart.push({ name: productName, price: price });
+            localStorage.setItem('cart', JSON.stringify(cart));
+        }
+
+        // Function to filter products
+        function filterProducts(category) {
             const products = document.querySelectorAll('.product');
+
+            products.forEach(product => {
+                if (category === 'all' || product.getAttribute('data-category') === category) {
+                    product.style.display = 'block';
+                } else {
+                    product.style.display = 'none';
+                }
+            });
+        }
+
+        // Function to search products
+        function searchProducts() {
+            const searchInput = document.getElementById('searchInput').value.toLowerCase();
+            const products = document.querySelectorAll('.product');
+
             products.forEach(product => {
                 const productName = product.querySelector('.product-name').textContent.toLowerCase();
-                if (productName.includes(input)) {
+                if (productName.includes(searchInput)) {
                     product.style.display = 'block';
                 } else {
                     product.style.display = 'none';
@@ -303,6 +309,6 @@
             });
         }
     </script>
-</body>
 
+</body>
 </html>
