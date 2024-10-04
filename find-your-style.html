@@ -77,12 +77,29 @@
         }
 
         .result {
-            display: none;
-            text-align: center;
-            font-size: 30px;
-            margin-top: 20px;
-            font-weight: bold;
-        }
+    display: block; /* To ensure it's visible */
+    text-align: center;
+    font-size: 32px; /* Slightly larger for emphasis */
+    margin-top: 25px;
+    color: #333; /* Darker text for readability */
+    padding: 15px; /* Adds some spacing around the text */
+    background-color: #f9f9f9; /* Subtle background to make the text stand out */
+    border-radius: 8px; /* Smooth rounded corners */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+    transition: all 0.3s ease; /* Smooth transition on hover or visibility changes */
+    width: 80%; /* Keep it centered with some margin */
+    margin-left: auto;
+    margin-right: auto;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+}
+
+.result:hover {
+    background-color: #f1f1f1; /* Slightly darker on hover */
+    transform: translateY(-5px); /* Gentle lift effect on hover */
+}
+
+    
+
 
         .retake-btn {
             display: none; /* Initially hidden */
@@ -159,6 +176,10 @@
 
         <div id="result" class="result"></div>
         <button id="retakeButton" class="btn retake-btn" onclick="retakeQuiz()">Retake Quiz</button>
+
+        <footer class="bg-dark text-white text-center py-4">
+            <p>&copy; 2024 CasaCurate. All rights reserved.</p>
+        </footer>
     </div>
 
     <script>
@@ -212,7 +233,8 @@
                 const selectedKey = selectedStyles.sort().join(", ");
                 const aesthetic = aestheticMapping[selectedKey] || "Unique Style";
 
-                resultElement.innerText = `You selected: ${selectedStyles.join(', ')}. Your preferred aesthetic is: ${aesthetic}.`;
+                resultElement.innerHTML = `You selected: ${selectedStyles.join(', ')}.<br>Your preferred aesthetic is: <b>${aesthetic}</b>.`;
+
                 resultElement.style.display = "block";
                 retakeButton.style.display = "block"; // Show retake button
             }
