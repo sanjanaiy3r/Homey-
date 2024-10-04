@@ -1,30 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CasaCurate - Home</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/styles.css">
-    <style>
-        .hero {
-            background-image: url('images/bgIMG.jpg');
-            height: 500px;
-            background-size: cover;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            text-align: center;
-            color: white;
-        }
-    </style>
 </head>
+
 <body>
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container">
-                <a class="navbar-brand" href="index.html">CasaCurate</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <a class="navbar-brand" href="#">CasaCurate</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
@@ -37,6 +28,9 @@
                         <li class="nav-item"><a class="nav-link" href="track-orders.html">Track Orders</a></li>
                         <li class="nav-item"><a class="nav-link" href="about-us.html">About Us</a></li>
                         <li class="nav-item"><a class="nav-link" href="login.html">Login/Signup</a></li>
+                        <li class="nav-item" id="usernameItem" style="display: none;">
+                            <span class="nav-link" id="usernameDisplay"></span>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -44,9 +38,16 @@
     </header>
 
     <main>
-        <section class="hero">
+        <section class="hero text-center text-white" style="background-image: url('images/bgIMG.jpg'); height: 500px; background-size: cover; display: flex; flex-direction: column; justify-content: center;background-position: center; /* Centers the image */
+        background-size: cover;      /* Ensures the image covers the entire section */
+        background-repeat: no-repeat; /* Prevents repeating of the image */
+        height: 100vh; /* Full screen height */
+        display: flex;
+        align-items: center; /* Centers content vertically */
+        justify-content: center; /* Centers content horizontally */">
             <div class="container">
                 <h2 class="display-4">Welcome to CasaCurate</h2>
+                
                 <p class="lead">Your one-stop shop for exquisite home decor.</p>
                 <a href="featured-products.html" class="btn btn-warning btn-lg">Shop Now</a>
                 <a href="find-your-style.html" class="btn btn-info btn-lg">Start Quiz</a>
@@ -62,15 +63,22 @@
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="js/scripts.js"></script>
+
     <script>
-        window.onload = function() {
-            const username = localStorage.getItem('username');
-            if (username) {
-                document.getElementById('usernameDisplay').textContent = `Hello, ${username}`;
-                document.getElementById('usernameContainer').style.display = 'block';
-                document.querySelector('.nav-link[href="login.html"]').style.display = 'none'; // Hide login link
+        // Function to display username if logged in
+        window.onload = function () {
+            const user = localStorage.getItem('loggedInUser');
+            if (user) {
+                document.getElementById('usernameDisplay').innerText = `Welcome, ${user}!`;
+                document.getElementById('usernameItem').style.display = 'block'; // Show the username in the navbar
+                const loginLink = document.querySelector('.navbar-nav .nav-link[href="login.html"]');
+                if (loginLink) {
+                    loginLink.style.display = 'none'; // Hide the login link
+                }
             }
-        }
+        };
     </script>
 </body>
+
 </html>
