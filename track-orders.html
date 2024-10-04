@@ -22,7 +22,7 @@
                         <li class="nav-item"><a class="nav-link" href="find-your-style.html">Find Your Style</a></li>
                         <li class="nav-item"><a class="nav-link" href="wishlist.html">Wishlist</a></li>
                         <li class="nav-item"><a class="nav-link" href="cart.html">Cart</a></li>
-                        <li class="nav-item"><a class="nav-link" href="track-orders.html">Track Orders</a></li>
+                        <!-- <li class="nav-item"><a class="nav-link" href="track-orders.html">Track Orders</a></li> -->
                         <li class="nav-item"><a class="nav-link" href="about-us.html">About Us</a></li>
                         <li class="nav-item"><a class="nav-link" href="login.html">Login/Signup</a></li>
                     </ul>
@@ -31,7 +31,7 @@
         </nav>
     </header>
 
-    <main class="container mt-4">
+    <!-- <main class="container mt-4">
         <h2 class="text-center">Track Your Orders</h2>
         <form>
             <div class="form-group">
@@ -40,6 +40,24 @@
             </div>
             <button type="submit" class="btn btn-primary">Track Order</button>
         </form>
+    </main> -->
+    <main class="container">
+        <h2 class="text-center">Track Your Orders</h2>
+        <form id="orderForm">
+            <div class="form-group">
+                <label for="orderId">Enter Your Order ID:</label>
+                <input type="text" class="form-control" id="orderId" placeholder="Order ID">
+            </div>
+            <button type="submit" class="btn btn-primary">Track Order</button>
+        </form>
+    
+        <div id="trackingInfo" class="tracking-info d-none">
+            <h5>Order Status</h5>
+            <ul id="trackingDetails">
+                <!-- Dynamic tracking details will be added here -->
+            </ul>
+            <p class="estimate-time"></p>
+        </div>
     </main>
 
     <footer class="bg-dark text-white text-center py-4">
@@ -49,6 +67,58 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="js/scripts.js"></script>
+    <!-- <script src="js/scripts.js"></script> -->
+    <script>
+        const fakeTrackingData = {
+            "12345": {
+                status: "In Transit",
+                locations: [
+                    { city: "Mumbai", time: "Oct 1, 2024 - 10:00 AM" },
+                    { city: "Pune", time: "Oct 2, 2024 - 12:30 PM" },
+                    { city: "Ahmedabad", time: "Oct 3, 2024 - 03:45 PM" }
+                ],
+                estimatedDelivery: "Oct 5, 2024 - 02:00 PM"
+            },
+            "67890": {
+                status: "Delivered",
+                locations: [
+                    { city: "Delhi", time: "Oct 2, 2024 - 08:00 AM" },
+                    { city: "Agra", time: "Oct 2, 2024 - 11:30 AM" },
+                    { city: "Jaipur", time: "Oct 3, 2024 - 04:00 PM" }
+                ],
+                estimatedDelivery: "Delivered on Oct 3, 2024"
+            }
+        };
+    
+        document.getElementById('orderForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+            
+            const orderId = document.getElementById('orderId').value.trim();
+            const trackingInfo = fakeTrackingData[orderId];
+            const trackingDetailsElement = document.getElementById('trackingDetails');
+            const trackingInfoDiv = document.getElementById('trackingInfo');
+            const estimateTimeElement = document.querySelector('.estimate-time');
+    
+            if (trackingInfo) {
+                trackingDetailsElement.innerHTML = '';
+                trackingInfo.locations.forEach(location => {
+                    const li = document.createElement('li');
+                    li.innerHTML = `<strong>${location.city}</strong> - <span class="status">${location.time}</span>`;
+                    trackingDetailsElement.appendChild(li);
+                });
+    
+                const estimateMessage = trackingInfo.status === 'Delivered'
+                    ? `<span class="status status-delivered">Delivered</span> on ${trackingInfo.estimatedDelivery}`
+                    : `Estimated Delivery Time: <strong>${trackingInfo.estimatedDelivery}</strong>`;
+                
+                estimateTimeElement.innerHTML = estimateMessage;
+                
+                trackingInfoDiv.classList.remove('d-none');
+            } else {
+                alert('Order ID not found. Please check and try again.');
+                trackingInfoDiv.classList.add('d-none');
+            }
+        });
+    </script>
 </body>
 </html>

@@ -123,7 +123,7 @@
                     <li class="nav-item"><a class="nav-link" href="find-your-style.html">Find Your Style</a></li>
                     <li class="nav-item"><a class="nav-link" href="wishlist.html">Wishlist</a></li>
                     <li class="nav-item"><a class="nav-link" href="cart.html">Cart</a></li>
-                    <li class="nav-item"><a class="nav-link" href="track-orders.html">Track Orders</a></li>
+                    <!-- <li class="nav-item"><a class="nav-link" href="track-orders.html">Track Orders</a></li> -->
                     <li class="nav-item"><a class="nav-link" href="about-us.html">About Us</a></li>
                     <li class="nav-item"><a class="nav-link" href="login.html">Login/Signup</a></li>
                 </ul>
@@ -270,6 +270,30 @@
     </div>
 
     <script>
+        function filterProducts(category) {
+    const products = document.querySelectorAll('.product');
+    products.forEach(product => {
+        if (category === 'all' || product.getAttribute('data-category') === category) {
+            product.style.display = 'block';
+        } else {
+            product.style.display = 'none';
+        }
+    });
+}
+
+function searchProducts() {
+    const searchInput = document.getElementById('searchInput').value.toLowerCase();
+    const products = document.querySelectorAll('.product');
+    products.forEach(product => {
+        const productName = product.querySelector('.product-name').innerText.toLowerCase();
+        if (productName.includes(searchInput)) {
+            product.style.display = 'block';
+        } else {
+            product.style.display = 'none';
+        }
+    });
+}
+
         function addToWishlist(productName, productPrice) {
             let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
             wishlist.push({ name: productName, price: productPrice });
@@ -283,6 +307,8 @@
             localStorage.setItem('cart', JSON.stringify(cart));
             alert(productName + " has been added to your cart.");
         }
+        
+        
     </script>
 </body>
 </html>
