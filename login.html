@@ -5,105 +5,190 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CasaCurate - Login/Signup</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/styles.css">
     <style>
         body {
-            background-color: #f8f9fa;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            margin: 0;
         }
+
         .form-container {
-            max-width: 400px;
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            width: 350px;
             margin: auto;
-            padding: 2rem;
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
-        .google-btn {
-            background-color: #4285F4;
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        input[type="email"], input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #000;
             color: white;
             border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .signup-link {
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .signup-link a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .signup-link a:hover {
+            text-decoration: underline;
+        }
+
+        .error {
+            color: red;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+
+        .footer {
+            background-color: #000;
+            color: #fff;
+            text-align: center;
+            padding: 15px 0;
+            position: relative;
+            bottom: 0;
+            width: 100%;
         }
     </style>
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <div class="container">
-                <a class="navbar-brand" href="#">CasaCurate</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav ml-auto">
-                        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="featured-products.html">Featured Products</a></li>
-                        <li class="nav-item"><a class="nav-link" href="find-your-style.html">Find Your Style</a></li>
-                        <li class="nav-item"><a class="nav-link" href="wishlist.html">Wishlist</a></li>
-                        <li class="nav-item"><a class="nav-link" href="cart.html">Cart</a></li>
-                        <li class="nav-item"><a class="nav-link" href="track-orders.html">Track Orders</a></li>
-                        <li class="nav-item"><a class="nav-link" href="about-us.html">About Us</a></li>
-                        <li class="nav-item"><a class="nav-link" href="login.html">Login/Signup</a></li>
-                    </ul>
-                </div>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #000;">
+        <div class="container">
+            <a class="navbar-brand" href="#">CasaCurate</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="featured-products.html">Featured Products</a></li>
+                    <li class="nav-item"><a class="nav-link" href="find-your-style.html">Find Your Style</a></li>
+                    <li class="nav-item"><a class="nav-link" href="wishlist.html">Wishlist</a></li>
+                    <li class="nav-item"><a class="nav-link" href="cart.html">Cart</a></li>
+                    <li class="nav-item"><a class="nav-link" href="track-orders.html">Track Orders</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about-us.html">About Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="login.html">Login/Signup</a></li>
+                    <li class="nav-item" id="usernameContainer" style="display: none;">
+                        <span class="nav-link" id="usernameDisplay"></span>
+                    </li>
+                </ul>
             </div>
-        </nav>
-    </header>
-
-    <main class="container mt-4">
-        <div class="form-container">
-            <h2 class="text-center">Login / Signup</h2>
-            <form>
-                <div class="form-group">
-                    <label for="email">Email:</label>
-                    <input type="email" class="form-control" id="email" required>
-                </div>
-                <div class="form-group">
-                    <label for="password">Password:</label>
-                    <input type="password" class="form-control" id="password" required>
-                </div>
-                <button type="submit" class="btn btn-primary btn-block">Login</button>
-                <hr>
-                <button type="button" class="btn google-btn btn-block" onclick="googleLogin()">Sign in with Google</button>
-                <p class="text-center mt-3">Don't have an account? <a href="#!" onclick="toggleSignup()">Signup</a></p>
-            </form>
-
-            <form id="signup-form" style="display: none;">
-                <div class="form-group">
-                    <label for="newEmail">Email:</label>
-                    <input type="email" class="form-control" id="newEmail" required>
-                </div>
-                <div class="form-group">
-                    <label for="newPassword">Password:</label>
-                    <input type="password" class="form-control" id="newPassword" required>
-                </div>
-                <button type="submit" class="btn btn-success btn-block">Signup</button>
-                <p class="text-center mt-3">Already have an account? <a href="#!" onclick="toggleLogin()">Login</a></p>
-            </form>
         </div>
-    </main>
+    </nav>
 
-    <footer class="bg-dark text-white text-center py-4">
-        <p>&copy; 2024 CasaCurate. All rights reserved.</p>
-    </footer>
+    <div class="form-container">
+        <h2 id="formTitle">Login</h2>
+        <div class="error" id="error"></div>
+        
+        <form id="authForm" onsubmit="return false;">
+            <input type="email" id="email" placeholder="Email" required>
+            <input type="password" id="password" placeholder="Password" required>
+            <button type="submit" onclick="handleAuth()">Login</button>
+        </form>
+        
+        <div class="signup-link">
+            Don't have an account? <a href="#" onclick="toggleForm()">Signup</a>
+        </div>
+    </div>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Footer -->
+    <div class="footer">
+        &copy; 2024 CasaCurate. All rights reserved.
+    </div>
+
     <script>
-        function toggleSignup() {
-            document.querySelector('form').style.display = 'none';
-            document.getElementById('signup-form').style.display = 'block';
+        let isLogin = true;
+
+        // Toggle between Login and Signup forms
+        function toggleForm() {
+            isLogin = !isLogin;
+            document.getElementById('formTitle').textContent = isLogin ? 'Login' : 'Signup';
+            document.querySelector('button').textContent = isLogin ? 'Login' : 'Signup';
+            document.querySelector('.signup-link a').textContent = isLogin ? 'Signup' : 'Login';
+            document.querySelector('.signup-link').innerHTML = isLogin 
+                ? `Don't have an account? <a href="#" onclick="toggleForm()">Signup</a>` 
+                : `Already have an account? <a href="#" onclick="toggleForm()">Login</a>`;
+            document.getElementById('error').textContent = '';
         }
 
-        function toggleLogin() {
-            document.getElementById('signup-form').style.display = 'none';
-            document.querySelector('form').style.display = 'block';
+        // Handle Login/Signup
+        function handleAuth() {
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const errorDiv = document.getElementById('error');
+
+            if (isLogin) {
+                const storedUser = JSON.parse(localStorage.getItem(email));
+                if (storedUser && storedUser.password === password) {
+                    alert('Login successful!');
+                    // Redirect to home page
+                    localStorage.setItem('username', storedUser.username);
+                    window.location.href = 'index.html'; // Change to your home page
+                } else {
+                    errorDiv.textContent = 'Invalid email or password';
+                }
+            } else {
+                if (localStorage.getItem(email)) {
+                    errorDiv.textContent = 'User already exists!';
+                } else {
+                    localStorage.setItem(email, JSON.stringify({ email, password, username: email.split('@')[0] })); // Set username
+                    alert('Signup successful! You can now log in.');
+                    toggleForm();
+                }
+            }
         }
 
-        function googleLogin() {
-            // Placeholder for Google sign-in functionality
-            alert("Google sign-in functionality to be implemented.");
+        // Display username if logged in
+        window.onload = function() {
+            const username = localStorage.getItem('username');
+            if (username) {
+                document.getElementById('usernameDisplay').textContent = `Hello, ${username}`;
+                document.getElementById('usernameContainer').style.display = 'block';
+                document.querySelector('.nav-link[href="login.html"]').style.display = 'none'; // Hide login link
+            }
         }
     </script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

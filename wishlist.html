@@ -1,70 +1,146 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CasaCurate - Wishlist</title>
+    <title>Wishlist - CasaCurate</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="css/styles.css">
-</head>
-<body>
-    <header>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <div class="container">
-                <a class="navbar-brand" href="#">CasaCurate</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav ml-auto">
-                        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="featured-products.html">Featured Products</a></li>
-                        <li class="nav-item"><a class="nav-link" href="find-your-style.html">Find Your Style</a></li>
-                        <li class="nav-item"><a class="nav-link" href="wishlist.html">Wishlist</a></li>
-                        <li class="nav-item"><a class="nav-link" href="cart.html">Cart</a></li>
-                        <li class="nav-item"><a class="nav-link" href="track-orders.html">Track Orders</a></li>
-                        <li class="nav-item"><a class="nav-link" href="about-us.html">About Us</a></li>
-                        <li class="nav-item"><a class="nav-link" href="login.html">Login/Signup</a></li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </header>
+    <style>
+        body {
+            font-family: 'Roboto', Arial, sans-serif;
+        }
 
-    <main class="container mt-4">
-        <h2 class="text-center">Your Wishlist</h2>
-        <div class="row">
-            <div class="col-md-3 mb-4">
-                <div class="card">
-                    <img src="images/product1.jpg" class="card-img-top" alt="Product 1">
-                    <div class="card-body">
-                        <h5 class="card-title">Product Title 1</h5>
-                        <button class="btn btn-danger">Remove</button>
-                        <button class="btn btn-primary">Add to Cart</button>
-                    </div>
-                </div>
+        .navbar {
+            background-color: #000;
+        }
+
+        .navbar-nav .nav-link {
+            color: #fff;
+            font-weight: bold;
+        }
+
+        .hero-section {
+            background-image: url('https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1400&q=80');
+            background-size: cover;
+            background-position: center;
+            color: #fff;
+            text-align: center;
+            padding: 100px 0;
+            position: relative;
+        }
+
+        .hero-section::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .wishlist-section {
+            padding: 50px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">CasaCurate</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="featured-products.html">Featured Products</a></li>
+                    <li class="nav-item"><a class="nav-link" href="find-your-style.html">Find Your Style</a></li>
+                    <li class="nav-item"><a class="nav-link" href="wishlist.html">Wishlist</a></li>
+                    <li class="nav-item"><a class="nav-link" href="cart.html">Cart</a></li>
+                    <li class="nav-item"><a class="nav-link" href="track-orders.html">Track Orders</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about-us.html">About Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="login.html">Login/Signup</a></li>
+                </ul>
             </div>
-            <div class="col-md-3 mb-4">
-                <div class="card">
-                    <img src="images/product2.jpg" class="card-img-top" alt="Product 2">
-                    <div class="card-body">
-                        <h5 class="card-title">Product Title 2</h5>
-                        <button class="btn btn-danger">Remove</button>
-                        <button class="btn btn-primary">Add to Cart</button>
-                    </div>
-                </div>
-            </div>
-            <!-- Add more wishlist items as needed -->
         </div>
-    </main>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="hero-section">
+        <div class="hero-content">
+            <h1>Your Wishlist</h1>
+            <p class="lead">Items you love, all in one place</p>
+        </div>
+    </div>
+
+    <!-- Wishlist Content -->
+    <div class="container wishlist-section">
+        <div class="row" id="wishlist-items">
+            <!-- Wishlist items will be added here dynamically -->
+        </div>
+    </div>
 
     <footer class="bg-dark text-white text-center py-4">
         <p>&copy; 2024 CasaCurate. All rights reserved.</p>
     </footer>
 
+    <!-- Bootstrap JS, Popper.js, and jQuery -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="js/scripts.js"></script>
+
+    <!-- Script for Wishlist Management -->
+    <script>
+        function loadWishlist() {
+            const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+            const wishlistContainer = document.getElementById('wishlist-items');
+
+            if (wishlist.length === 0) {
+                wishlistContainer.innerHTML = '<p class="col-12 text-center">Your wishlist is empty.</p>';
+            } else {
+                wishlistContainer.innerHTML = wishlist.map(item => 
+                    `<div class="col-md-3 mb-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">${item.name}</h5>
+                                <p class="card-text">Price: ₹${item.price}</p>
+                                <button class="btn btn-outline-danger btn-sm" onclick="removeFromWishlist('${item.name}')">Remove</button>
+                                <button class="btn btn-outline-primary btn-sm" onclick="addToCart('${item.name}', ${item.price})">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>`).join('');
+            }
+        }
+
+        function removeFromWishlist(itemName) {
+            const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+            const updatedWishlist = wishlist.filter(item => item.name !== itemName);
+            localStorage.setItem('wishlist', JSON.stringify(updatedWishlist));
+            loadWishlist();
+        }
+
+        function addToCart(productName, price) {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            cart.push({ name: productName, price: price });
+            localStorage.setItem('cart', JSON.stringify(cart));
+            alert(`${productName} has been added to your cart.`);
+        }
+
+        // Load wishlist on page load
+        loadWishlist();
+    </script>
 </body>
+
 </html>

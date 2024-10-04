@@ -33,34 +33,45 @@
 
     <main class="container mt-4">
         <h2 class="text-center">Your Cart</h2>
-        <div class="row">
-            <div class="col-md-3 mb-4">
-                <div class="card">
-                    <img src="images/product1.jpg" class="card-img-top" alt="Product 1">
-                    <div class="card-body">
-                        <h5 class="card-title">Product Title 1</h5>
-                        <p class="card-text">Price: $20.00</p>
-                        <button class="btn btn-danger">Remove</button>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 mb-4">
-                <div class="card">
-                    <img src="images/product2.jpg" class="card-img-top" alt="Product 2">
-                    <div class="card-body">
-                        <h5 class="card-title">Product Title 2</h5>
-                        <p class="card-text">Price: $25.00</p>
-                        <button class="btn btn-danger">Remove</button>
-                    </div>
-                </div>
-            </div>
-            <!-- Add more cart items as needed -->
-        </div>
-        <div class="text-center">
-            <h4>Total: $45.00</h4>
-            <button class="btn btn-success">Proceed to Checkout</button>
+        <div id="cart-items"></div>
+        <div id="cart-total" class="text-right mt-3"></div>
+        <div class="text-center mt-4">
+            <button id="proceed-to-buy" class="btn btn-primary" onclick="proceedToBuy()">Proceed to Buy</button>
         </div>
     </main>
+
+    <!-- Payment Modal -->
+    <div class="modal fade" id="paymentModal" tabindex="-1" role="dialog" aria-labelledby="paymentModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="paymentModalLabel">Payment Gateway</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="payment-form">
+                        <div class="form-group">
+                            <label for="card-number">Card Number</label>
+                            <input type="text" class="form-control" id="card-number" placeholder="1234 5678 9012 3456" required>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="expiry-date">Expiry Date</label>
+                                <input type="text" class="form-control" id="expiry-date" placeholder="MM/YY" required>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="cvv">CVV</label>
+                                <input type="text" class="form-control" id="cvv" placeholder="123" required>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Pay Now</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <footer class="bg-dark text-white text-center py-4">
         <p>&copy; 2024 CasaCurate. All rights reserved.</p>
@@ -69,6 +80,57 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="js/scripts.js"></script>
+    <script>
+        function loadCart() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const cartContainer = document.getElementById('cart-items');
+            const cartTotal = document.getElementById('cart-total');
+            
+            if (cart.length === 0) {
+                cartContainer.innerHTML = '<p class="text-center">No items in your cart.</p>';
+                cartTotal.innerHTML = '';
+                document.getElementById('proceed-to-buy').style.display = 'none';
+            } else {
+                let total = 0;
+                cartContainer.innerHTML = cart.map(item => {
+                    total += item.price;
+                    return `
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <h5 class="card-title">${item.name}</h5>
+                                <p class="card-text">Price: ₹${item.price}</p>
+                                <button class="btn btn-danger btn-sm" onclick="removeFromCart('${item.name}')">Remove</button>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+                cartTotal.innerHTML = `<h4>Total: ₹${total}</h4>`;
+                document.getElementById('proceed-to-buy').style.display = 'inline-block';
+            }
+        }
+
+        function removeFromCart(itemName) {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const updatedCart = cart.filter(item => item.name !== itemName);
+            localStorage.setItem('cart', JSON.stringify(updatedCart));
+            loadCart();
+        }
+
+        function proceedToBuy() {
+            $('#paymentModal').modal('show');
+        }
+
+        // Handle payment form submission
+        document.getElementById('payment-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Payment successful! Thank you for your purchase.');
+            localStorage.removeItem('cart');
+            $('#paymentModal').modal('hide');
+            loadCart();
+        });
+
+        // Load cart on page load
+        loadCart();
+    </script>
 </body>
 </html>

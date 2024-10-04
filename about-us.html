@@ -1,75 +1,132 @@
-
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CasaCurate - About Us</title>
+    <title>About Us - CasaCurate</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="css/styles.css">
+    <style>
+        body {
+            font-family: 'Roboto', Arial, sans-serif;
+        }
+        .navbar {
+            background-color: #000;
+        }
+        .navbar-nav .nav-link {
+            color: #fff;
+            font-weight: bold;
+        }
+        .hero-section {
+            background-image: url('https://images.unsplash.com/photo-1616046229478-9901c5536a45?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1400&q=80');
+            background-size: cover;
+            background-position: center;
+            color: #fff;
+            text-align: center;
+            padding: 100px 0;
+            position: relative;
+        }
+        .hero-section::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+        }
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+        .about-section {
+            padding: 50px 0;
+        }
+        .value-prop {
+            text-align: center;
+            margin-top: 30px;
+        }
+        .value-prop i {
+            font-size: 3rem;
+            color: #007bff;
+            margin-bottom: 15px;
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <div class="container">
-                <a class="navbar-brand" href="#">CasaCurate</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav ml-auto">
-                        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="featured-products.html">Featured Products</a></li>
-                        <li class="nav-item"><a class="nav-link" href="find-your-style.html">Find Your Style</a></li>
-                        <li class="nav-item"><a class="nav-link" href="wishlist.html">Wishlist</a></li>
-                        <li class="nav-item"><a class="nav-link" href="cart.html">Cart</a></li>
-                        <li class="nav-item"><a class="nav-link" href="track-orders.html">Track Orders</a></li>
-                        <li class="nav-item"><a class="nav-link" href="about-us.html">About Us</a></li>
-                        <li class="nav-item"><a class="nav-link" href="login.html">Login/Signup</a></li>
-                    </ul>
-                </div>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">CasaCurate</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="featured-products.html">Featured Products</a></li>
+                    <li class="nav-item"><a class="nav-link" href="find-your-style.html">Find Your Style</a></li>
+                    <li class="nav-item"><a class="nav-link" href="wishlist.html">Wishlist</a></li>
+                    <li class="nav-item"><a class="nav-link" href="cart.html">Cart</a></li>
+                    <li class="nav-item"><a class="nav-link" href="track-orders.html">Track Orders</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about-us.html">About Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="login.html">Login/Signup</a></li>
+                </ul>
             </div>
-        </nav>
-        <div class="container text-center mt-3">
-            <h1 class="text-white">Curating Spaces, Building Dreams</h1>
         </div>
-    </header>
+    </nav>
 
-    <main class="container mt-5">
-        <h2 class="text-center">About CasaCurate</h2>
-        <p class="text-center mt-3">At CasaCurate, we believe that every home should tell a unique story — your story. With our wide selection of home decor items, we make it easy for you to transform any space into a reflection of your personal style. Our curated collections are thoughtfully designed to bring warmth, creativity, and inspiration into every room, helping you build the home of your dreams.</p>
-        
-        <section class="mt-5">
-            <h3>Our Mission</h3>
-            <p>At CasaCurate, our mission is simple yet profound: to provide high-quality, stylish, and affordable home decor that resonates with individuality and sparks creativity. We aim to be the go-to platform for interior enthusiasts, offering carefully selected products that enhance living spaces and empower people to craft their dream homes, one detail at a time.</p>
-        </section>
-        
-        <section class="mt-4">
-            <h3>Our Story</h3>
-            <p>CasaCurate was born out of a passion for beautiful, functional design and the belief that everyone deserves a home they love. Founded in 2024, we set out to bridge the gap between premium quality decor and affordability. From humble beginnings, we've grown into a trusted platform for home decor enthusiasts across the country, bringing together a community of creators and visionaries who believe in the power of a well-curated space.</p>
-        </section>
+    <!-- Hero Section -->
+    <div class="hero-section">
+        <div class="hero-content">
+            <h1>About CasaCurate</h1>
+            <p class="lead">"Curating spaces, building dreams"</p>
+        </div>
+    </div>
 
-        <section class="mt-4">
-            <h3>Why Choose Us?</h3>
-            <p>We stand apart in the home decor industry because we don't just sell products — we provide inspiration. Our collections are designed with a focus on craftsmanship, quality, and affordability, ensuring that your home reflects your personality and vision without breaking the bank. Whether you are looking to revamp a room, find the perfect statement piece, or get advice on how to style your space, we are here to guide you every step of the way.</p>
-        </section>
+    <!-- About Us Content -->
+    <div class="container about-section">
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <h2 class="text-center mb-4">Our Story</h2>
+                <p>Welcome to CasaCurate, where we believe that every home tells a unique story. Founded in 2024, our passion for interior design and commitment to quality have made us a trusted name in home decor.</p>
+                <p>At CasaCurate, we understand that your living space is a reflection of your personality and aspirations. That's why we've dedicated ourselves to curating a diverse collection of stylish, affordable, and high-quality home decor items that cater to various tastes and preferences.</p>
+                <p>Our team of expert designers and curators work tirelessly to bring you the latest trends and timeless classics, ensuring that you have access to the perfect pieces to transform your house into a home you love.</p>
+            </div>
+        </div>
 
-        <section class="mt-4">
-            <h3>Contact Us</h3>
-            <p>Have any questions, feedback, or need help with your order? We'd love to hear from you! Reach out to us at <a href="mailto:info@casacurate.com">info@casacurate.com</a>, or follow us on our social media platforms to stay updated with the latest trends and products.</p>
-        </section>
-    </main>
+        <div class="row mt-5">
+            <div class="col-md-4 value-prop">
+                <i class="fas fa-paint-brush"></i>
+                <h3>Curated Selection</h3>
+                <p>Handpicked items to suit every style and budget</p>
+            </div>
+            <div class="col-md-4 value-prop">
+                <i class="fas fa-truck"></i>
+                <h3>Fast & Free Shipping</h3>
+                <p>Enjoy free shipping on orders over ₹2500</p>
+            </div>
+            <div class="col-md-4 value-prop">
+                <i class="fas fa-headset"></i>
+                <h3>Expert Support</h3>
+                <p>Our design experts are here to help you create your dream space</p>
+            </div>
+        </div>
 
-    <footer class="bg-dark text-white text-center py-4 mt-5">
-        <p>&copy; 2024 CasaCurate. All rights reserved.</p>
-        <p>Follow us on:</p>
-        <a href="#" class="text-white mx-2">Facebook</a>
-        <a href="#" class="text-white mx-2">Instagram</a>
-        <a href="#" class="text-white mx-2">Pinterest</a>
-    </footer>
+        <div class="row mt-5">
+            <div class="col-lg-8 mx-auto">
+                <h2 class="text-center mb-4">Our Mission</h2>
+                <p>At CasaCurate, our mission is simple: to help you create a living space that inspires and delights. We believe that a well-designed home can enhance your quality of life, boost your mood, and provide a sanctuary where memories are made.</p>
+                <p>Through our carefully curated collection, user-friendly website, and exceptional customer service, we strive to make the process of decorating your home as enjoyable and stress-free as possible. Whether you're looking for a statement piece to tie a room together or embarking on a complete home makeover, CasaCurate is here to guide you every step of the way.</p>
+            </div>
+        </div>
+    </div>
 
+    <!-- Bootstrap JS, Popper.js, and jQuery -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="js/scripts.js"></script>
 </body>
 </html>
